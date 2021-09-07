@@ -48,7 +48,7 @@ export class WarningAlertComponent implements OnInit {
 
     this.loadTxtFileData();
     //this.loadTxtDataByFetch();
-  } 
+  }
 
   private loadTxtFileData(): void {
     this.warningAlertService.getTextFromFile('http://localhost:4200/assets/files/myText.txt')
@@ -78,12 +78,13 @@ export class WarningAlertComponent implements OnInit {
     if(p !== null){
       p.innerText = theUsername;
     }
-    
+
     this.username = "";
   }
 
   resetUsername(): void {
     this.username = "";
+    this.usernameCreated = !this.usernameCreated;
   }
 
   ngOnInit(): void {

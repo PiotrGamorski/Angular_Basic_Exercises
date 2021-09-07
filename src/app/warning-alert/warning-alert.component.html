@@ -12,6 +12,9 @@
     <!-- <button [disabled]="disableUsername()" (click)="sendUsername(username)">Username</button> -->
     <button [disabled]="!username" (click)="resetUsername()">Username</button>
     <p id="username">{{username}}</p>
-    <!-- <p id="username" *ngIf="usernameCreated">{{username}}</p> -->
+    <p *ngIf="usernameCreated; else noUsernameCreated">username created</p>
+    <ng-template #noUsernameCreated>
+      <p>username did not created</p>
+    </ng-template>
 </div>
 
