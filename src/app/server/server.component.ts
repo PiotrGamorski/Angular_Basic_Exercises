@@ -33,7 +33,5 @@ export class ServerComponent {
   toggleDetails(event: Event): void {
     this.showDetails = !this.showDetails;
     this.clicksArray.push(event.timeStamp);
-    console.log(this.clicksArray.length)
-    console.log(this.clicksArray.lastIndexOf(event.timeStamp));
   }
 }

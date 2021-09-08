@@ -6,9 +6,9 @@
 
 <div>
     <div
-     *ngFor="let click of clicksArray"
-     [ngStyle]="{backgroundColor: clicksArray.length >= 5 ? 'cornflowerblue' : 'transparent'}"
-     [ngClass]="{'white-text': clicksArray.length >= 5}"
+     *ngFor="let click of clicksArray; let i = index"
+     [ngStyle]="{backgroundColor: i >= 5 ? 'cornflowerblue' : 'transparent'}"
+     [ngClass]="{'white-text': i >= 5}"
      >The button was clicked at: {{click}}</div>
 </div>
 
