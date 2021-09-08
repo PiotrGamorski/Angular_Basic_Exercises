@@ -33,8 +33,7 @@ export class ServerComponent {
   toggleDetails(event: Event): void {
     this.showDetails = !this.showDetails;
     this.clicksArray.push(event.timeStamp);
-
-    // update lessTnenFive clicks
-    this.lessThenFive = this.clicksArray.length < 5 ? true : false;
+    console.log(this.clicksArray.length)
+    console.log(this.clicksArray.lastIndexOf(event.timeStamp));
   }
 }

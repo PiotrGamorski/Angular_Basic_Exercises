@@ -1,15 +1,17 @@
 <button (click)="toggleDetails($event)">{{getButtonInnerHtml()}}</button>
+
 <div *ngIf="showDetails">
     <p>these are the details</p>
-    <div *ngIf="lessThenFive">
-        <p *ngFor="let click of clicksArray">
-            The button was clicked at {{click}}
-        </p>
-    </div>
-    <!-- <ng-template #moreThanFive>
-        <p [ngStyle]="{backgroundColor: 'blue'}"></p>
-    </ng-template> -->
 </div>
+
+<div>
+    <div
+     *ngFor="let click of clicksArray"
+     [ngStyle]="{backgroundColor: clicksArray.length >= 5 ? 'cornflowerblue' : 'transparent'}"
+     [ngClass]="{'white-text': clicksArray.length >= 5}"
+     >The button was clicked at: {{click}}</div>
+</div>
+
 <p [ngStyle]="{backgroundColor: getColor()}" [ngClass]="{online: serverStatus === 'online'}">
     Server with id {{serverId}} is {{serverStatus}}
 </p>
