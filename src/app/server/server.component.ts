@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { fromEvent, Observer } from 'rxjs';
+import { fromEvent, Observer, of, interval, from } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
 @Component({
@@ -27,16 +27,24 @@ export class ServerComponent {
     }
   }
 
-  //create observable that emits click events
-  source = fromEvent<MouseEvent>(document, 'click');
-  //map to string with given event timestamp
-  example = this.source.pipe(map(event => `Event time: ${event.timeStamp}`));
-  example2 = this.source.pipe(filter(data => data.clientX > 300 && data.clientY > 300));
+  // create observable that emits click events
+  eventObservable = fromEvent<MouseEvent>(document, 'click');
+  ofObservable = of<string>('hello');
+  intervalObservable = interval(1000);
+  fromObservable = from<string>('hello');
 
-  //output
-  // subscription = this.example.subscribe((value) => console.log(value));
-  subscription = this.example.subscribe(this.myOberver);
-  subscription2 = this.example2.subscribe((data) => console.log(data));
+  stringObservable = this.eventObservable.pipe(map(event => `Event time: ${event.timeStamp}`));
+  newStringObservable = this.eventObservable.pipe(filter(data => data.clientX > 300 && data.clientY > 300));
+
+  // the output
+  subscription = this.stringObservable.subscribe(this.myOberver);
+  newSubscription = this.newStringObservable.subscribe((data) => console.log(data));
+  ofSubscription = this.ofObservable.subscribe((data) => console.log(data));
+  // will throw data on console every second
+  // intervalSubscription = this.intervalObservable.subscribe((data) => console.log(data));
+
+  // every element from data coming will be spread and for each obervable is made
+  fromSubscription = this.fromObservable.subscribe((data) => console.log(data));
 
   constructor(){
     this.serverStatus = Math.random() > 0.5 ? 'online' : 'offline';
